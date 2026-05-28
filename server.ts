@@ -76,6 +76,7 @@ Your task is to analyze the provided page or document image/PDF and convert it i
 3. **Layout & Flow Preservation**:
    - Maintain the line sequence, bullet points, tabular layouts, indentation, and paragraph boundaries perfectly.
    - Use appropriate heading syntax: '#' for main document headers, '##' or '###' for section titles.
+   - DO NOT USE horizontal pagebreak symbols, section divider lines, or horizontal rules (e.g., \`---\`, \`----\`, or multiple consecutive dashes on a line or anywhere in the text) as these cause pagebreak errors in the user's destination copy application. Keep the text flowing as one continuous, uninterrupted stream of readable paragraphs and lists matching the source sequence exactly. No divider lines of any kind.
 
 4. **Illegible Words / Bad Handwriting Handling**:
    - If some handwritten words are entirely illegible, fuzzy, or cut-off, mark them inline with: \`==⚠️ High Alert: [illegible word]==\` (or if the surrounding text is Hindi, use: \`==⚠️ High Alert: [अस्पष्ट शब्द]==\`). Add these instances to the 'alerts' array with appropriate context.
@@ -136,6 +137,15 @@ Please format your response strictly as valid JSON matching the specified respon
     });
 
     const parsedOCRResult = JSON.parse(response.text?.trim() || "{}");
+    
+    // Post-process the markdown output to guarantee all '---' dividers or triple hyphens are stripped or replaced with clean line breaks or spacing to keep text continuous
+    if (parsedOCRResult && typeof parsedOCRResult.markdown === "string") {
+      // 1. Replaces line-isolated section break dividers (---) with simple double newlines to make sure they display as a continuous text stream
+      parsedOCRResult.markdown = parsedOCRResult.markdown.replace(/^[ \t]*-{3,}[ \t]*$/gm, "\n");
+      // 2. Replaces any remaining consecutive hyphens (3 or more) anywhere in the text with empty string or single spaces so they never segment or break documents
+      parsedOCRResult.markdown = parsedOCRResult.markdown.replace(/---+/g, " ");
+    }
+
     return res.json(parsedOCRResult);
 
   } catch (error: any) {

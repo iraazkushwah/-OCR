@@ -237,7 +237,7 @@ export default function App() {
       // Heading 1
       if (cleanLine.startsWith("# ")) {
         return (
-          <h1 key={idx} style={{ paddingLeft: `${indentPadding}px` }} className="text-2xl font-display font-extrabold text-indigo-950 mt-6 mb-3 tracking-tight border-b border-slate-200 pb-2">
+          <h1 key={idx} style={{ paddingLeft: `${indentPadding}px` }} className="text-2xl font-display font-extrabold text-slate-100 mt-6 mb-3 tracking-tight border-b border-slate-800 pb-2">
             {cleanLine.substring(2)}
           </h1>
         );
@@ -245,7 +245,7 @@ export default function App() {
       // Heading 2
       if (cleanLine.startsWith("## ")) {
         return (
-          <h2 key={idx} style={{ paddingLeft: `${indentPadding}px` }} className="text-xl font-display font-bold text-slate-800 mt-5 mb-2.5 tracking-tight">
+          <h2 key={idx} style={{ paddingLeft: `${indentPadding}px` }} className="text-xl font-display font-bold text-slate-200 mt-5 mb-2.5 tracking-tight">
             {cleanLine.substring(3)}
           </h2>
         );
@@ -253,7 +253,7 @@ export default function App() {
       // Heading 3
       if (cleanLine.startsWith("### ")) {
         return (
-          <h3 key={idx} style={{ paddingLeft: `${indentPadding}px` }} className="text-lg font-display font-semibold text-slate-700 mt-4 mb-2">
+          <h3 key={idx} style={{ paddingLeft: `${indentPadding}px` }} className="text-lg font-display font-semibold text-slate-300 mt-4 mb-2">
             {cleanLine.substring(4)}
           </h3>
         );
@@ -262,8 +262,8 @@ export default function App() {
       if (cleanLine.startsWith("- ") || cleanLine.startsWith("• ")) {
         const listText = cleanLine.substring(2);
         return (
-          <div key={idx} style={{ paddingLeft: `${indentPadding + 16}px` }} className="flex items-start gap-2.5 my-1.5 text-slate-700 font-sans leading-relaxed">
-            <span className="text-indigo-500 font-bold mt-1">•</span>
+          <div key={idx} style={{ paddingLeft: `${indentPadding + 16}px` }} className="flex items-start gap-2.5 my-1.5 text-slate-300 font-sans leading-relaxed">
+            <span className="text-indigo-400 font-bold mt-1">•</span>
             <div className="flex-1">{parseInlineHighlights(listText)}</div>
           </div>
         );
@@ -271,7 +271,7 @@ export default function App() {
 
       // Default styled text block
       return (
-        <p key={idx} style={{ paddingLeft: `${indentPadding}px` }} className="my-2 text-slate-600 font-sans leading-relaxed min-h-[1.5rem]">
+        <p key={idx} style={{ paddingLeft: `${indentPadding}px` }} className="my-2 text-slate-350 font-sans leading-relaxed min-h-[1.5rem]">
           {parseInlineHighlights(cleanLine)}
         </p>
       );
@@ -312,19 +312,19 @@ export default function App() {
   };
 
   return (
-    <div id="app-root" className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans transition-all">
+    <div id="app-root" className="min-h-screen bg-[#0b0f19] text-slate-100 flex flex-col font-sans transition-colors duration-300">
       {/* Geometric Balance Premium Header */}
-      <header id="app-header" className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 shrink-0 shadow-xs sticky top-0 z-40">
+      <header id="app-header" className="h-16 bg-[#111827] border-b border-slate-800 flex items-center justify-between px-6 shrink-0 shadow-md sticky top-0 z-40">
         <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 bg-indigo-600 flex items-center justify-center rounded-sm text-white font-bold text-lg select-none">
+          <div className="w-8 h-8 bg-indigo-650 flex items-center justify-center rounded-sm text-white font-bold text-lg select-none">
             स
           </div>
           <div>
-            <h1 className="text-lg md:text-xl font-display font-black tracking-tight text-slate-800">
+            <h1 className="text-lg md:text-xl font-display font-black tracking-tight text-slate-100">
               {t.title}
             </h1>
-            <p className="hidden md:block text-[10px] text-slate-500 font-semibold mt-0.5">
-              Devanagari Document Layout & Structured Output Pipeline
+            <p className="hidden md:block text-[10px] text-slate-400 font-semibold mt-0.5 animate-pulse">
+              Adaptive Document Character & Layout Recognition Engine
             </p>
           </div>
         </div>
@@ -333,7 +333,7 @@ export default function App() {
           <button 
             id="reset-project-btn" 
             onClick={resetProject}
-            className="px-4 py-2 rounded-md border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 transition-colors cursor-pointer text-[11px] font-bold shadow-2xs"
+            className="px-4 py-2 rounded-md border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors cursor-pointer text-[11px] font-bold shadow-2xs"
           >
             New Project
           </button>
@@ -347,9 +347,9 @@ export default function App() {
         <aside id="panel-left-ops" className="w-full lg:w-80 flex flex-col gap-5 shrink-0">
           
           {/* Upload Widget card */}
-          <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-xs">
+          <div className="bg-[#111827] border border-slate-800 rounded-xl p-5 shadow-lg">
             <h3 className="text-xs font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
-              <Layers className="w-4 h-4 text-indigo-500" />
+              <Layers className="w-4 h-4 text-indigo-400" />
               {t.uploadTitle}
             </h3>
 
@@ -362,8 +362,8 @@ export default function App() {
               onClick={triggerUploadClick}
               className={`border-2 border-dashed rounded-lg p-5 text-center cursor-pointer transition-all duration-300 relative overflow-hidden group ${
                 isDragOver 
-                  ? "border-indigo-500 bg-indigo-50/20" 
-                  : "border-indigo-100 bg-indigo-50/5 hover:border-indigo-300 hover:bg-indigo-50/20"
+                  ? "border-indigo-500 bg-indigo-950/40" 
+                  : "border-indigo-900/45 bg-indigo-950/10 hover:border-indigo-550 hover:bg-indigo-950/20"
               }`}
             >
               <input
@@ -376,7 +376,7 @@ export default function App() {
 
               <Upload className="w-8 h-8 mx-auto text-indigo-400 mb-2 transition-transform group-hover:scale-110" />
 
-              <span className="text-xs font-bold text-indigo-600 block mb-1">
+              <span className="text-xs font-bold text-indigo-400 block mb-1">
                 {t.uploadDesc}
               </span>
               <span className="text-[10px] text-slate-400 font-medium">
@@ -386,15 +386,15 @@ export default function App() {
 
             {/* Current Loaded File Details */}
             {uploadedFile && (
-              <div className="mt-4 pt-4 border-t border-slate-100">
-                <div className="p-3 bg-slate-50 rounded border border-slate-150 flex items-center space-x-3">
+              <div className="mt-4 pt-4 border-t border-slate-805">
+                <div className="p-3 bg-slate-800/60 rounded border border-slate-700 flex items-center space-x-3">
                   <div className={`w-9 h-11 rounded flex items-center justify-center font-bold text-[10px] shadow-xs ${
-                    uploadedFile.name.endsWith(".pdf") ? "bg-red-50 text-red-600 border border-red-100" : "bg-indigo-50 text-indigo-600 border border-indigo-100"
+                    uploadedFile.name.endsWith(".pdf") ? "bg-red-950/60 text-red-400 border border-red-900/40" : "bg-indigo-950/60 text-indigo-400 border border-indigo-900/40"
                   }`}>
                     {uploadedFile.name.endsWith(".pdf") ? "PDF" : "IMG"}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-bold text-slate-700 truncate" title={uploadedFile.name}>
+                    <p className="text-xs font-bold text-slate-200 truncate" title={uploadedFile.name}>
                       {uploadedFile.name}
                     </p>
                     <p className="text-[10px] text-slate-400 font-semibold mt-0.5">
@@ -405,7 +405,7 @@ export default function App() {
 
                 {/* Error Box */}
                 {uploadedFile.status === "failed" && (
-                  <div className="mt-3 p-3 bg-rose-50 border border-rose-100 rounded text-rose-800 flex flex-col gap-1 text-[11px] leading-relaxed">
+                  <div className="mt-3 p-3 bg-rose-950/40 border border-rose-900/50 rounded text-rose-300 flex flex-col gap-1 text-[11px] leading-relaxed">
                     <p className="font-extrabold">{t.errorTitle}</p>
                     <p>{uploadedFile.error}</p>
                   </div>
@@ -415,23 +415,23 @@ export default function App() {
           </div>
 
           {/* Interactive OCR Processing Settings */}
-          <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-xs flex flex-col gap-4">
+          <div className="bg-[#111827] border border-slate-800 rounded-xl p-5 shadow-lg flex flex-col gap-4">
             <h3 className="text-xs font-black uppercase tracking-widest text-slate-400 flex items-center gap-2">
-              <Sliders className="w-4 h-4 text-indigo-500" />
+              <Sliders className="w-4 h-4 text-indigo-400" />
               {t.ocrStatus}
             </h3>
 
             <div className="space-y-3.5">
               {/* Select OCR Engine */}
               <div className="space-y-1.5 text-left">
-                <label className="text-[11px] font-bold text-slate-650 flex items-center gap-1">
-                  <Cpu className="w-3.5 h-3.5 text-slate-400" />
+                <label className="text-[11px] font-bold text-slate-300 flex items-center gap-1">
+                  <Cpu className="w-3.5 h-3.5 text-slate-450" />
                   OCR Engine
                 </label>
                 <select 
                   value={ocrEngine}
                   onChange={(e) => setOcrEngine(e.target.value)}
-                  className="w-full text-xs p-2.5 border border-slate-200 rounded outline-hidden bg-slate-50 font-medium text-slate-700"
+                  className="w-full text-xs p-2.5 border border-slate-700 rounded outline-hidden bg-[#0b0f19] font-medium text-slate-200 focus:border-indigo-500"
                 >
                   <option value="Google Vision API (High Precision)">Google Vision API (High Precision)</option>
                   <option value="Fine-tuned Tesseract">Fine-tuned Tesseract OCR</option>
@@ -441,11 +441,11 @@ export default function App() {
 
               {/* Layout preservation switch toggle */}
               <div className="flex items-center justify-between text-xs font-bold">
-                <span className="text-slate-600 font-medium">{t.layoutAnalysis}</span>
+                <span className="text-slate-350 font-medium">{t.layoutAnalysis}</span>
                 <button
                   onClick={() => setLayoutAnalysisEnabled(!layoutAnalysisEnabled)}
                   className={`w-9 h-5 rounded-full relative p-0.5 transition-colors cursor-pointer ${
-                    layoutAnalysisEnabled ? "bg-indigo-600" : "bg-slate-200"
+                    layoutAnalysisEnabled ? "bg-indigo-650" : "bg-slate-800"
                   }`}
                 >
                   <div className={`w-3.5 h-3.5 bg-white rounded-full transition-transform ${
@@ -456,11 +456,11 @@ export default function App() {
 
               {/* Auto-Structuring switch toggle */}
               <div className="flex items-center justify-between text-xs font-bold">
-                <span className="text-slate-600 font-medium">{t.formattingLogic}</span>
+                <span className="text-slate-355 font-medium">{t.formattingLogic}</span>
                 <button
                   onClick={() => setAutoStructuringEnabled(!autoStructuringEnabled)}
                   className={`w-9 h-5 rounded-full relative p-0.5 transition-colors cursor-pointer ${
-                    autoStructuringEnabled ? "bg-indigo-600" : "bg-slate-200"
+                    autoStructuringEnabled ? "bg-indigo-650" : "bg-slate-800"
                   }`}
                 >
                   <div className={`w-3.5 h-3.5 bg-white rounded-full transition-transform ${
@@ -476,15 +476,15 @@ export default function App() {
                 {uploadedFile.status === "idle" && (
                   <button
                     onClick={processOCR}
-                    className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold text-xs shadow-md shadow-indigo-600/10 active:scale-95 transition-transform cursor-pointer"
+                    className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold text-xs shadow-md shadow-indigo-650/20 active:scale-95 transition-transform cursor-pointer"
                   >
                     {t.processBtn}
                   </button>
                 )}
 
                 {uploadedFile.status === "processing" && (
-                  <div className="flex items-center justify-center gap-2 p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs font-bold text-slate-700 text-center animate-pulse">
-                    <Loader2 className="w-4 h-4 text-indigo-600 animate-spin" />
+                  <div className="flex items-center justify-center gap-2 p-3 bg-slate-800 border border-slate-705 rounded-lg text-xs font-bold text-slate-250 text-center animate-pulse">
+                    <Loader2 className="w-4 h-4 text-indigo-400 animate-spin" />
                     {t.processing}
                   </div>
                 )}
@@ -492,7 +492,7 @@ export default function App() {
                 {uploadedFile.status === "completed" && (
                   <button
                     onClick={processOCR}
-                    className="w-full py-2.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-700 rounded-lg font-bold text-xs transition-transform cursor-pointer"
+                    className="w-full py-2.5 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 rounded-lg font-bold text-xs transition-transform cursor-pointer"
                   >
                     {t.reProcessBtn}
                   </button>
@@ -502,16 +502,16 @@ export default function App() {
           </div>
 
           {/* Quick Help Guide */}
-          <div className="bg-indigo-50/40 border border-indigo-100 rounded-xl p-5 shadow-xs">
-            <h4 className="text-xs font-black text-indigo-950 uppercase tracking-widest mb-3 flex items-center gap-1.5">
-              <BookOpen className="w-4 h-4 text-indigo-700" />
+          <div className="bg-indigo-950/20 border border-indigo-900/50 rounded-xl p-5 shadow-xs">
+            <h4 className="text-xs font-black text-indigo-350 uppercase tracking-widest mb-3 flex items-center gap-1.5">
+              <BookOpen className="w-4 h-4 text-indigo-400" />
               How to use:
             </h4>
-            <div className="flex flex-col gap-2.5 text-slate-700 text-[11px] leading-relaxed font-semibold">
+            <div className="flex flex-col gap-2.5 text-slate-300 text-[11px] leading-relaxed font-semibold">
               <p>1. Drag & drop or upload a picture or PDF document containing notes.</p>
               <p>2. Choose layout settings and click 'Start Process' to run the adaptive OCR.</p>
               <p>3. Review, edit, copy to clipboard, or download your adaptive layout-preserving output.</p>
-              <p className="mt-1 text-[10px] text-indigo-800 leading-normal bg-indigo-50 border border-indigo-100/60 p-2.5 rounded italic">
+              <p className="mt-1 text-[10px] text-indigo-300 leading-normal bg-indigo-950/40 border border-indigo-900/40 p-2.5 rounded italic">
                 {t.legibilityHelp}
               </p>
             </div>
@@ -519,25 +519,25 @@ export default function App() {
         </aside>
 
         {/* Right Side: Geometric split Canvas View */}
-        <section id="panel-right-canvas" className="flex-1 bg-white border border-slate-200 rounded-xl shadow-xs overflow-hidden flex flex-col">
+        <section id="panel-right-canvas" className="flex-1 bg-[#111827] border border-slate-800 rounded-xl shadow-lg overflow-hidden flex flex-col">
           
           {/* Default blank placeholder */}
           {!uploadedFile ? (
             <div className="flex-1 flex flex-col items-center justify-center text-center p-12 min-h-[480px]">
-              <div className="w-16 h-16 bg-indigo-50 border border-indigo-100 text-indigo-500 rounded-full flex items-center justify-center mb-5 animate-pulse">
+              <div className="w-16 h-16 bg-indigo-950/40 border border-indigo-900 text-indigo-400 rounded-full flex items-center justify-center mb-5 animate-pulse">
                 <FileText className="w-7 h-7" />
               </div>
-              <h3 className="text-lg font-display font-black text-slate-800 mb-2">
+              <h3 className="text-lg font-display font-black text-slate-100 mb-2">
                 {t.title}
               </h3>
-              <p className="text-xs text-slate-500 max-w-sm leading-relaxed font-semibold">
+              <p className="text-xs text-slate-400 max-w-sm leading-relaxed font-semibold">
                 {t.noFile}
               </p>
             </div>
           ) : (
             <div className="flex-1 flex flex-col min-h-0">
               {/* Top Original & Markdown split preview header */}
-              <div className="h-12 bg-white border-b border-slate-200 flex items-center justify-between px-4 shrink-0">
+              <div className="h-12 bg-[#111827] border-b border-slate-800 flex items-center justify-between px-4 shrink-0">
                 <div className="flex items-center space-x-2">
                   <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
                     {uploadedFile.name} • OCR MONITOR
@@ -546,14 +546,14 @@ export default function App() {
 
                 {/* Sub Tab selection switches */}
                 {uploadedFile.status === "completed" && (
-                  <div className="flex items-center bg-slate-100 border border-slate-200 p-0.5 rounded-md text-[11px] font-bold">
+                  <div className="flex items-center bg-[#0b0f19] border border-slate-800 p-0.5 rounded-md text-[11px] font-bold">
                     <button
                       id="tab-preview"
                       onClick={() => setActiveTab("preview")}
-                      className={`px-3 py-1 rounded transition-all ${
+                      className={`px-3 py-1 rounded transition-all cursor-pointer ${
                         activeTab === "preview"
-                          ? "bg-white text-indigo-700 shadow-xs"
-                          : "text-slate-500 hover:text-slate-900"
+                          ? "bg-indigo-600 text-white shadow-sm"
+                          : "text-slate-400 hover:text-slate-200"
                       }`}
                     >
                       {t.viewStructured}
@@ -561,10 +561,10 @@ export default function App() {
                     <button
                       id="tab-editor"
                       onClick={() => setActiveTab("editor")}
-                      className={`px-3 py-1 rounded transition-all ${
+                      className={`px-3 py-1 rounded transition-all cursor-pointer ${
                         activeTab === "editor"
-                          ? "bg-white text-indigo-700 shadow-xs"
-                          : "text-slate-500 hover:text-slate-900"
+                          ? "bg-indigo-600 text-white shadow-sm"
+                          : "text-slate-400 hover:text-slate-200"
                       }`}
                     >
                       {t.viewEditor}
@@ -572,10 +572,10 @@ export default function App() {
                     <button
                       id="tab-alerts"
                       onClick={() => setActiveTab("alerts")}
-                      className={`px-3 py-1 rounded transition-all ${
+                      className={`px-3 py-1 rounded transition-all cursor-pointer ${
                         activeTab === "alerts"
-                          ? "bg-white text-indigo-700 shadow-xs"
-                          : "text-slate-500 hover:text-slate-900"
+                          ? "bg-indigo-600 text-white shadow-sm"
+                          : "text-slate-400 hover:text-slate-200"
                       }`}
                     >
                       {t.viewAlerts} ({uploadedFile.result?.alerts.length || 0})
@@ -586,22 +586,22 @@ export default function App() {
 
               {/* Stats overview banner */}
               {uploadedFile.status === "completed" && uploadedFile.result && (
-                <div className="bg-slate-50/60 border-b border-slate-200/80 px-6 py-3.5 grid grid-cols-3 gap-4 shrink-0 text-left">
+                <div className="bg-[#0f1626] border-b border-slate-800 px-6 py-3.5 grid grid-cols-3 gap-4 shrink-0 text-left">
                   <div>
-                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-wider block">{t.accuracyEst}</span>
-                    <span className="text-lg font-display font-black text-indigo-600 block mt-0.5">
+                    <span className="text-[9px] font-black text-slate-450 uppercase tracking-wider block">{t.accuracyEst}</span>
+                    <span className="text-lg font-display font-black text-indigo-400 block mt-0.5 animate-pulse">
                       {uploadedFile.result.confidenceEstimate}%
                     </span>
                   </div>
-                  <div className="border-l border-slate-200 pl-4">
-                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-wider block">{t.wordCount}</span>
-                    <span className="text-lg font-display font-black text-slate-800 block mt-0.5">
+                  <div className="border-l border-slate-800 pl-4">
+                    <span className="text-[9px] font-black text-slate-455 uppercase tracking-wider block">{t.wordCount}</span>
+                    <span className="text-lg font-display font-black text-slate-200 block mt-0.5">
                       {uploadedFile.result.wordCount}
                     </span>
                   </div>
-                  <div className="border-l border-slate-200 pl-4">
-                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-wider block">{t.alertsCount}</span>
-                    <span className={`text-lg font-display font-black block mt-0.5 ${uploadedFile.result.alerts.length > 0 ? "text-amber-600" : "text-slate-400"}`}>
+                  <div className="border-l border-slate-800 pl-4">
+                    <span className="text-[9px] font-black text-slate-455 uppercase tracking-wider block">{t.alertsCount}</span>
+                    <span className={`text-lg font-display font-black block mt-0.5 ${uploadedFile.result.alerts.length > 0 ? "text-amber-500" : "text-slate-500"}`}>
                       {uploadedFile.result.alerts.length}
                     </span>
                   </div>
@@ -609,19 +609,19 @@ export default function App() {
               )}
 
               {/* Dynamic Viewer Panel */}
-              <div className="flex-1 flex flex-col md:flex-row min-h-0 bg-slate-50">
+              <div className="flex-1 flex flex-col md:flex-row min-h-0 bg-[#0b0f19]">
                 
                 {/* Left pane: File Previews (PDF/Image) */}
-                <div className="w-full md:w-1/2 border-b md:border-b-0 md:border-r border-slate-200 flex flex-col bg-slate-50 min-h-[250px] md:min-h-0">
-                  <div className="h-9 bg-white border-b border-slate-200 flex items-center px-4 justify-between shrink-0">
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">
+                <div className="w-full md:w-1/2 border-b md:border-b-0 md:border-r border-slate-800 flex flex-col bg-[#0b0f19] min-h-[250px] md:min-h-0">
+                  <div className="h-9 bg-[#111827] border-b border-slate-800 flex items-center px-4 justify-between shrink-0">
+                    <span className="text-[9px] font-bold text-slate-450 uppercase tracking-widest">
                       Original Document (Visual View)
                     </span>
                   </div>
 
-                  <div className="flex-1 p-6 flex items-center justify-center overflow-auto">
+                  <div className="flex-1 p-6 flex items-center justify-center overflow-auto bg-[#0b0f19]">
                     {uploadedFile.previewUrl ? (
-                      <div className="relative max-w-full max-h-[380px] bg-white p-3 border border-slate-200 shadow-xs rounded">
+                      <div className="relative max-w-full max-h-[380px] bg-slate-900/50 p-3 border border-slate-800 shadow-md rounded">
                         <img 
                           src={uploadedFile.previewUrl} 
                           alt="Original Devanagari Note" 
@@ -630,9 +630,9 @@ export default function App() {
                         />
                       </div>
                     ) : (
-                      <div className="bg-white border border-slate-200 rounded-lg p-6 max-w-sm text-center shadow-2xs select-none">
-                        <FileText className="w-8 h-8 mx-auto text-slate-300 mb-2" />
-                        <p className="text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                      <div className="bg-[#111827] border border-slate-800 rounded-lg p-6 max-w-sm text-center shadow-lg select-none">
+                        <FileText className="w-8 h-8 mx-auto text-slate-650 mb-2" />
+                        <p className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-1">
                           {uploadedFile.name.endsWith(".pdf") ? "PDF File Document" : "Image File"}
                         </p>
                         <p className="text-[10px] text-slate-400 leading-normal font-medium">
@@ -644,26 +644,26 @@ export default function App() {
                 </div>
 
                 {/* Right pane: Active tab digital outputs */}
-                <div className="w-full md:w-1/2 flex flex-col bg-white min-h-[350px] md:min-h-0">
+                <div className="w-full md:w-1/2 flex flex-col bg-[#111827] min-h-[350px] md:min-h-0">
                   
                   {/* Export action bars */}
                   {uploadedFile.status === "completed" && (
-                    <div className="h-9 bg-slate-50 border-b border-slate-200/80 flex items-center justify-between px-4 shrink-0">
-                      <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">
+                    <div className="h-9 bg-[#111827] border-b border-slate-800 flex items-center justify-between px-4 shrink-0">
+                      <span className="text-[9px] font-bold text-slate-450 uppercase tracking-widest">
                         Markdown / Text Output
                       </span>
                       <div className="flex space-x-2">
                         <button 
                           onClick={copyToClipboard}
-                          className="px-2.5 py-0.5 text-[9px] bg-indigo-50 border border-indigo-150 rounded text-indigo-700 font-bold hover:bg-indigo-100 transition-colors cursor-pointer"
+                          className="px-2.5 py-0.5 text-[9px] bg-slate-800/80 border border-slate-700 rounded text-indigo-300 font-bold hover:bg-indigo-950/40 hover:text-white transition-colors cursor-pointer"
                         >
                           {copiedMessage ? t.copySuccess : t.copyText}
                         </button>
                         <button 
                           onClick={() => downloadFile("md")}
-                          className="px-2.5 py-0.5 text-[9px] bg-indigo-600 text-white font-bold rounded shadow-xs hover:bg-indigo-700 transition-colors cursor-pointer"
+                          className="px-2.5 py-0.5 text-[9px] bg-indigo-650 text-white font-bold rounded shadow-xs hover:bg-indigo-700 transition-colors cursor-pointer"
                         >
-                          डाउनलोड .md
+                          {t.downloadMd}
                         </button>
                       </div>
                     </div>
@@ -674,8 +674,8 @@ export default function App() {
                     {/* Process Loading Screen */}
                     {uploadedFile.status === "processing" && (
                       <div className="h-full flex flex-col items-center justify-center text-center gap-3">
-                        <Loader2 className="w-8 h-8 text-indigo-600 animate-spin" />
-                        <p className="text-xs font-bold text-indigo-950 animate-pulse">{t.processing}</p>
+                        <Loader2 className="w-8 h-8 text-indigo-400 animate-spin" />
+                        <p className="text-xs font-bold text-indigo-300 animate-pulse">{t.processing}</p>
                       </div>
                     )}
 
@@ -683,12 +683,12 @@ export default function App() {
                     {uploadedFile.status === "idle" && (
                       <div className="h-full flex flex-col items-center justify-center text-center p-4">
                         <Sparkles className="w-7 h-7 text-indigo-400 animate-pulse mb-2.5" />
-                        <p className="text-xs text-indigo-950 font-bold block mb-1">
+                        <p className="text-xs text-slate-300 font-bold block mb-1">
                           {t.readyMessage}
                         </p>
                         <button
                           onClick={processOCR}
-                          className="mt-3 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded font-bold text-xs"
+                          className="mt-3 px-5 py-2.5 bg-indigo-650 hover:bg-indigo-700 text-white rounded font-bold text-xs cursor-pointer shadow-md"
                         >
                           {t.processBtn}
                         </button>
@@ -701,7 +701,7 @@ export default function App() {
                         
                         {/* Tab-1: High Accuracy render panel */}
                         {activeTab === "preview" && (
-                          <div id="ocr-rendered-content" className="prose prose-slate max-w-none text-left">
+                          <div id="ocr-rendered-content" className="prose prose-invert max-w-none text-left text-slate-200">
                             {renderFormattedMarkdownToReact(editableMarkdown)}
                           </div>
                         )}
@@ -712,7 +712,7 @@ export default function App() {
                             id="ocr-text-editor"
                             value={editableMarkdown}
                             onChange={(e) => setEditableMarkdown(e.target.value)}
-                            className="w-full h-full min-h-[300px] border-0 outline-hidden font-mono text-xs md:text-sm leading-relaxed text-slate-800 focus:ring-0 bg-transparent resize-none"
+                            className="w-full h-full min-h-[300px] border-0 outline-hidden font-mono text-xs md:text-sm leading-relaxed text-slate-100 focus:ring-0 bg-transparent resize-none focus:outline-hidden"
                             placeholder="OCR Output Markdown text will appear here..."
                           />
                         )}
@@ -720,14 +720,14 @@ export default function App() {
                         {/* Tab-3: Exception Warnings Alert reviewers */}
                         {activeTab === "alerts" && (
                           <div className="flex flex-col gap-4 text-left">
-                            <div className="bg-amber-50 border border-amber-200 rounded p-4">
-                              <div className="flex items-start gap-2.5 text-amber-900">
-                                <AlertTriangle className="w-4 h-4 text-amber-600 font-bold shrink-0 mt-0.5" />
+                            <div className="bg-amber-950/20 border border-amber-900/50 rounded-lg p-4">
+                              <div className="flex items-start gap-2.5 text-amber-300">
+                                <AlertTriangle className="w-4 h-4 text-amber-505 font-bold shrink-0 mt-0.5" />
                                 <div>
                                   <p className="text-[11px] font-bold">
                                     Exception Management & Blurry Phrases:
                                   </p>
-                                  <p className="text-[10px] text-amber-800 font-semibold leading-relaxed mt-1">
+                                  <p className="text-[10px] text-amber-400/80 font-semibold leading-relaxed mt-1">
                                     Instead of dropping fuzzy text, the model flags bad handwriting, stains, or blurred prints to let you compare and verify with the original document.
                                   </p>
                                 </div>
@@ -735,37 +735,37 @@ export default function App() {
                             </div>
 
                             {(!uploadedFile.result?.alerts || uploadedFile.result.alerts.length === 0) ? (
-                              <div className="p-8 text-center bg-indigo-50 border border-indigo-100 rounded flex flex-col items-center gap-1.5 justify-center">
-                                <CheckCircle2 className="w-6 h-6 text-indigo-650" />
-                                <p className="text-xs font-bold text-indigo-900">{t.noAlertsFound}</p>
+                              <div className="p-8 text-center bg-indigo-950/20 border border-indigo-900/40 rounded flex flex-col items-center gap-1.5 justify-center">
+                                <CheckCircle2 className="w-6 h-6 text-indigo-400" />
+                                <p className="text-xs font-bold text-indigo-300">{t.noAlertsFound}</p>
                               </div>
                             ) : (
                               <div className="flex flex-col gap-3">
                                 {uploadedFile.result.alerts.map((alertItem: OCRAlert, alertIdx: number) => (
                                   <div 
                                     key={alertIdx} 
-                                    className="bg-white border border-amber-200/80 rounded-xl p-4 shadow-xs flex flex-col gap-3.5 transition-all hover:border-amber-300"
+                                    className="bg-slate-900/40 border border-amber-900/40 rounded-xl p-4 shadow-sm flex flex-col gap-3.5 transition-all hover:border-amber-700/60"
                                   >
                                     <div className="flex justify-between items-center text-xs">
-                                      <span className="bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full font-extrabold flex items-center gap-1 leading-none">
-                                        <AlertTriangle className="w-3 h-3 text-amber-600" />
+                                      <span className="bg-amber-950/60 border border-amber-900/40 text-amber-300 px-2.5 py-0.5 rounded-full font-extrabold flex items-center gap-1 leading-none text-[10px]">
+                                        <AlertTriangle className="w-3 h-3 text-amber-500" />
                                         HIGH ALERT #{alertIdx + 1}
                                       </span>
-                                      <span className="text-slate-400 font-mono text-[10px] font-semibold">
+                                      <span className="text-slate-450 font-mono text-[10px] font-semibold">
                                         {t.alertReason}: {alertItem.reason}
                                       </span>
                                     </div>
 
                                     <div>
-                                      <p className="text-[10px] uppercase font-bold text-slate-400 leading-relaxed">{t.alertFragment}:</p>
-                                      <p className="text-sm font-bold text-amber-955 mt-0.5 font-mono px-2 py-1 bg-amber-50 rounded-md border border-amber-100/60">
+                                      <p className="text-[10px] uppercase font-bold text-slate-500 tracking-wider leading-relaxed">{t.alertFragment}:</p>
+                                      <p className="text-xs font-bold text-amber-300 mt-0.5 font-mono px-2.5 py-1.5 bg-amber-950/30 rounded-md border border-amber-900/30">
                                         {alertItem.fragment}
                                       </p>
                                     </div>
 
                                     <div>
-                                      <p className="text-[10px] uppercase font-bold text-slate-400 leading-relaxed">{t.alertContext}:</p>
-                                      <p className="text-xs text-slate-650 italic mt-0.5 leading-relaxed">
+                                      <p className="text-[10px] uppercase font-bold text-slate-500 tracking-wider leading-relaxed">{t.alertContext}:</p>
+                                      <p className="text-xs text-slate-350 italic mt-0.5 leading-relaxed">
                                         "...{alertItem.context}..."
                                       </p>
                                     </div>
@@ -792,11 +792,11 @@ export default function App() {
       </main>
 
       {/* Footer System Credits */}
-      <footer id="app-footer" className="bg-white border-t border-slate-200/80 mt-auto py-5 px-4 shadow-sm shrink-0">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400 font-semibold uppercase tracking-wider">
+      <footer id="app-footer" className="bg-[#111827] border-t border-slate-805 mt-auto py-5 px-4 shadow-md shrink-0">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 font-semibold uppercase tracking-wider">
           <p>© 2026 {t.title}</p>
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5 text-emerald-600 font-extrabold">
+            <span className="flex items-center gap-1.5 text-emerald-500 font-extrabold">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               Secure Multi-modal OCR Engine
             </span>
