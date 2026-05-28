@@ -1,0 +1,6 @@
+{
+  "name": "सम्यक OCR",
+  "description": "High accuracy OCR & formatting utility for Sanskrit, Hindi, and English documents with smart layout preservation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
